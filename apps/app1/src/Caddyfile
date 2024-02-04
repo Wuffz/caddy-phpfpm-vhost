@@ -1,0 +1,8 @@
+
+app1.local {
+    root * /apps/app1
+	php_fastcgi app1:9000 {
+        root /var/www/html
+    }
+    file_server
+}

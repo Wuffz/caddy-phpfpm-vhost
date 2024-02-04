@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  caddy:
+    build:
+        context: ../
+    image: caddy:2
+    container_name: caddy
+    restart: always
+    ports:
+      - 80:80  # Needed for the ACME HTTP-01 challenge.
+      - 443:443
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ../apps/app1/src/:/apps/app1
+    networks:
+        - net
+
+networks:
+    net:
+        driver: bridge

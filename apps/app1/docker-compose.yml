@@ -1,0 +1,16 @@
+version: '3'
+services:
+  php-fpm:
+    hostname: app1
+    image: php:8.3-fpm
+    container_name: php-fpm
+    restart: always
+    volumes:
+      - ./src:/var/www/html
+    networks:
+        - main_net
+    ports:
+      - "9000:9000"
+networks:
+    main_net:
+        external: true
